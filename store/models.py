@@ -1,5 +1,23 @@
 from django.db import models
+import uuid
 
+class Store(models.Model):
+    id = models.CharField(max_length=64, primary_key=True, verbose_name=u"Activation key",
+                 default=uuid.uuid4)
+    name = models.CharField(max_length=60, unique=True, null=True)
+    code = models.CharField(max_length=10, unique=True, null=True)
+    # canadian dollar to RMB rate
+    currency_rate = models.DecimalField(max_digits=9, decimal_places=2, default=5.00, blank=True)
+    tax_rate = models.DecimalField(max_digits=9, decimal_places=2, default=0.13, blank=True)
+
+    agent_share = models.DecimalField(max_digits=9, decimal_places=2, default=0.4, blank=True)
+    
+    created = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+    
+    def __unicode__(self):
+        return self.name
+    
 class Category(models.Model):
     """ model class containing information about a category in the product catalog """
     name = models.CharField(max_length=50)

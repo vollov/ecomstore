@@ -81,8 +81,8 @@ USE_L10N = True
 USE_TZ = True
 
 # define resource root
-RESOURCE_ROOT='/opt/www/ecomstore/'
-#RESOURCE_ROOT='c:/opt/var/www/ecomstore/'
+#RESOURCE_ROOT='/opt/www/ecomstore/'
+RESOURCE_ROOT='c:/opt/var/www/ecomstore/'
 # Logging settings for development
 """
 DEBUG: Low level system information for debugging purposes
@@ -169,3 +169,27 @@ FIXTURE_PATH = os.path.join(BASE_DIR,'fixture')
 FIXTURE_DIRS = (
     FIXTURE_PATH,
 )
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+# store app settings
+STORE_CODE = '10001'
+
+SITE_NAME = 'Modern Musician'
+META_KEYWORDS = 'Music, instruments, sheet music, musician'
+META_DESCRIPTION = 'Modern Musician is an online supplier of instruments, sheet music, and other accessories for musicians'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.template.context_processors.debug',
+    'django.template.context_processors.i18n',
+    'django.template.context_processors.media',
+    'django.template.context_processors.static',
+    'django.template.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'store.context_processors.ecomstore',
+)
+
+handler404 = 'esite.views.file_not_found_404'

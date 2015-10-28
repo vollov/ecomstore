@@ -1,10 +1,10 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-# import catalog.views
+from .views import index as home
 
 urlpatterns = [
-#     url(r'^$', catalog.views.home),
+    url(r'^$', home, name='index'),
     url(r'^store/$', include('store.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
